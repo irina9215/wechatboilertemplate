@@ -1,0 +1,60 @@
+<script type="text/ng-template" id="formTemplate">
+    <form name="baseForm" novalidate>
+        <div class="weui-cells__title">请填写您的个人信息</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">姓名</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" placeholder="请输入姓名" name="name" id="name" ng-model="formCtrl.user.name" required>
+                </div>
+            </div>
+            <div class="weui-cell" ng-class="{'weui-cell_warn': baseForm.phonenumber.$invalid && !baseForm.phonenumber.$pristine}">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">手机号</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" placeholder="例如，13812341234" name="phonenumber" id="phone-number" ng-model="formCtrl.user.phoneNumber" maxlength="11" ng-pattern="formCtrl.mobileNumberPattern" required>
+                </div>
+                <div class="weui-cell__bd">
+                    <i ng-if="baseForm.phonenumber.$invalid && !baseForm.phonenumber.$pristine" class="weui-icon-warn"></i>
+                </div>
+            </div>
+            <div class="weui-cells__tips" ng-show="baseForm.phonenumber.$invalid && !baseForm.phonenumber.$pristine">请输入11位正确的手机号码</div>
+            <div class="weui-cell" ng-class="{'weui-cell_warn': baseForm.email.$invalid && !baseForm.email.$pristine}">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">电子邮箱</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="email" name="email" id="email" placeholder="例如，email@emailtest.com" ng-model="formCtrl.user.email" required>
+                </div>
+                <div class="weui-cell__bd">
+                    <i ng-if="baseForm.email.$invalid && !baseForm.email.$pristine" class="weui-icon-warn"></i>
+                </div>
+            </div>
+            <div class="weui-cells__tips" ng-show="baseForm.email.$invalid && !baseForm.email.$pristine">请输入正确的email</div>
+            <div class="weui-cell" ng-class="{'weui-cell_warn': baseForm.bpcs-code.$invalid }">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">经销商
+                        <br>BPCS码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="bpcs-code" id="bpcs-code" placeholder="例如，ABC123ABCD" ng-model="formCtrl.user.bpcsCode">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells weui-cells__checkbox">
+            <label class="weui-cell weui-check__label" for="s12">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" name="checkbox" class="weui-check" id="s12" ng-model="formCtrl.user.terms">
+                    <i class="weui-icon__checked"></i>
+                </div>
+                <div class="weui-cell__bd">同意接受
+                    <a ui-sref="terms">个人数据隐私保护条款</a>
+                </div>
+            </label>
+        </div>
+        <a href="javascript:;" class="weui-btn weui-btn_primary" ng-disabled="baseForm.$invalid" ng-click="formCtrl.submit()" ng-class="{'weui-btn_disabled':baseForm.$invalid}">参与</a>
+    </form>
+</script>
